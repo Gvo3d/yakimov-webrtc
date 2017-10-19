@@ -1,0 +1,8 @@
+#DATABASE PROPERTIES
+dataSource:
+  driverClassName: org.postgresql.Driver
+  url: jdbc:postgresql://127.0.0.1:5432/webrtc?createDatabaseIfNotExist=true
+  username: root
+  password: root
+  dialect: org.hibernate.dialect.PostgreSQLDialect
+  package: org.yakimovdenis.demoyakimovwebrtc.models
