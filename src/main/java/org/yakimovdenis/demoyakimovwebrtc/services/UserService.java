@@ -1,17 +1,23 @@
 package org.yakimovdenis.demoyakimovwebrtc.services;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import org.yakimovdenis.demoyakimovwebrtc.models.User;
 
 @Service
+//@Scope(value = "session")
 public class UserService {
-    ThreadLocal<User> user = new ThreadLocal<>();
+    private ThreadLocal<User> user = new ThreadLocal<>();
+    private Long userIdGenerator = 0L;
 
-    public void setUser(User user) {
+    public User setUser(User user) {
+        user.setId(userIdGenerator++);
         this.user.set(user);
+        System.out.println(user);
+        return this.user.get();
     }
 
-    public User getUser(){
+    public User getUser() {
         return this.user.get();
     }
 }

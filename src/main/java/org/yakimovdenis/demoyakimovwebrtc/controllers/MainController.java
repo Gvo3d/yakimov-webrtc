@@ -1,10 +1,9 @@
 package org.yakimovdenis.demoyakimovwebrtc.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.yakimovdenis.demoyakimovwebrtc.models.User;
 import org.yakimovdenis.demoyakimovwebrtc.services.UserService;
@@ -15,7 +14,7 @@ import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
 import java.sql.Timestamp;
 
-@Controller
+@RestController
 public class MainController {
 
     @Autowired
@@ -34,9 +33,8 @@ public class MainController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/doLogin", method = RequestMethod.POST)
-    public String doLogin(String username){
-        userService.setUser(new User(username));
-        return "redirect:/main";
+    @RequestMapping(value = "/doLogin", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public User doLogin(@RequestBody User user){
+        return userService.setUser(user);
     }
 }
