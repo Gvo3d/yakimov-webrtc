@@ -1,12 +1,13 @@
 import {User} from "../models/user.model";
 import {IUser} from "../models/user.interface";
-import {Injectable, OnChanges, SimpleChanges} from "@angular/core";
+import {DoCheck, Injectable, OnChanges, SimpleChanges} from "@angular/core";
 import {Observable} from "rxjs/Observable";
 import {Response} from '@angular/http';
 
 @Injectable()
-export class UserService implements OnChanges{
-  private afterLogin:boolean = false;
+export class UserService {
+
+  private afterLogin: boolean = false;
   private _user: User;
 
   get user(): User {
@@ -17,16 +18,19 @@ export class UserService implements OnChanges{
     let result: User;
     fromServer.subscribe(next => {
       result = <User>next.json();
+      this._user = result;
+      this.checkUserChangesAndCloseLoginForm();
     });
-    this._user = result;
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (!this.afterLogin) {
+  checkUserChangesAndCloseLoginForm(): void {
+    if (this.afterLogin == false) {
       if (this._user) {
+        console.log("user.id=" + this._user.id + ", user.name=" + this._user.name)
         //CLOSE LOGIN COMPONENT, OPEN ANOTHER
+        this.afterLogin = true;
       }
     }
-
   }
+
 }

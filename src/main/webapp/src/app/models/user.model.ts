@@ -1,8 +1,8 @@
 import {IUser} from "./user.interface";
 
 export class User implements IUser{
-  private id: number;
-  private name: string;
+  id: number;
+  name: string;
 
   get getId(): number {
     return this.id;
