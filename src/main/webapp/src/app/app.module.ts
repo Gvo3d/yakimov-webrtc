@@ -10,12 +10,12 @@ import {RoomlistComponent} from "./components/roomlist/roomlist.component";
 import {PageNotFoundComponent} from "./components/pagenotfound/notfound.component";
 import {MainComponent} from "./components/main/main.component";
 import {RoutingModule} from "./routing.module";
-import {AuthHolder} from "./services/auth.holder";
+import {DataHolder} from "./services/data.holder";
 
 @NgModule({
   imports: [RoutingModule, BrowserModule, FormsModule, HttpModule],
   declarations: [MainComponent, LoginComponent, RoomComponent, RoomlistComponent, PageNotFoundComponent],
-  providers: [RestTemplate, AuthHolder, ApplicationService],
+  providers: [RestTemplate, DataHolder, ApplicationService],
   bootstrap: [MainComponent]
 })
 
