@@ -1,0 +1,53 @@
+<!--<ul>-->
+<!--<li *ngFor="let room of rooms">-->
+<!--{{ room }} data-toggle="popover" title="Popover Header" data-content="Some content inside the popover"-->
+<!--</li>-->
+<!--</ul>-->
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table">
+        <thead>
+        <tr>
+          <th>
+            #
+          </th>
+          <th>
+            Name
+          </th>
+          <th>
+            Author
+          </th>
+          <th>
+            Persons
+          </th>
+          <th>
+            Status
+          </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let room of rooms">
+          <div data-toggle="popover" data-trigger="hover" data-content="{{room.users}}">
+            <td>
+              {{room.id}}
+            </td>
+            <td>
+              {{room.name}}
+            </td>
+            <td>
+              {{room.author.name}}
+            </td>
+            <td>
+              {{room._users.length}}
+            </td>
+            <td>
+              {{room.opened?'Opened':'Closed'}}
+            </td>
+          </div>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -3,11 +3,14 @@ package org.yakimovdenis.demoyakimovwebrtc.models;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 public class Room {
     private long id;
     private String name;
     private Date created;
+    private Long authorId;
+    private List<User> users;
     private boolean opened;
 
     public long getId() {
@@ -40,5 +43,21 @@ public class Room {
 
     public void setOpened(boolean opened) {
         this.opened = opened;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
+
+    public Long getAuthorId() {
+        return authorId;
+    }
+
+    public void setAuthorId(Long authorId) {
+        this.authorId = authorId;
     }
 }

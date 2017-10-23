@@ -1,17 +1,17 @@
 import {Inject, Injectable} from "@angular/core";
 import {RestTemplate} from "./rest-template";
-import {UserService} from "./user.service";
+import {DataHolder} from "./data.holder";
 
 @Injectable()
 export class ApplicationService {
-  constructor(private _rest: RestTemplate, private _user: UserService) {
+  constructor(private _rest: RestTemplate, private _user: DataHolder) {
   }
 
   get getRestTemplate(): RestTemplate {
     return this._rest;
   }
 
-  get getUserService(): UserService {
+  get getDataHolder(): DataHolder {
     return this._user;
   }
 }

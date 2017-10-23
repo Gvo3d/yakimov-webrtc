@@ -21,9 +21,7 @@ export class RestTemplate implements OnInit {
   }
 
   public doGet(url: string) {
-    this.http.get(this.getUrl(url), {headers: this.headers}).subscribe(x => {
-      return x.json()
-    });
+    return this.http.get(this.getUrl(url), {headers: this.headers});
   }
 
   public doPost(url: string, dataToSend: Object): Observable<Response> {

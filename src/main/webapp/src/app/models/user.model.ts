@@ -1,5 +1,3 @@
-import {IUser} from "./user.interface";
-
 export class User implements IUser{
   id: number;
   name: string;
@@ -23,4 +21,11 @@ export class User implements IUser{
   public toString(): string {
     return 'User: { id=' + this.id + ', name=' + this.name + ' };'
   }
+}
+
+export interface IUser {
+  id: number;
+  name: String;
+
+  toString():string;
 }
