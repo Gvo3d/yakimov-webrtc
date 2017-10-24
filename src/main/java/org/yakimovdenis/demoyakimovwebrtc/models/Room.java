@@ -2,6 +2,7 @@ package org.yakimovdenis.demoyakimovwebrtc.models;
 
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -10,7 +11,7 @@ public class Room {
     private String name;
     private Date created;
     private Long authorId;
-    private List<User> users;
+    private List<User> users = new ArrayList<>();
     private boolean opened;
 
     public long getId() {
@@ -51,6 +52,10 @@ public class Room {
 
     public void setUsers(List<User> users) {
         this.users = users;
+    }
+
+    public void addUserToRoom(User user) {
+        this.users.add(user);
     }
 
     public Long getAuthorId() {

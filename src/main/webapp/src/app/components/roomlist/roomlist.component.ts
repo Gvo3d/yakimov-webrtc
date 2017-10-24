@@ -2,7 +2,6 @@ import {Component, OnInit} from "@angular/core";
 import {ApplicationService} from "../../services/application.service";
 import {Constants} from "../../constants";
 import {Room} from "../../models/room.model";
-import {AuthorEntry} from "../../models/author_list.model";
 import {User} from "../../models/user.model";
 
 @Component({
@@ -31,7 +30,17 @@ export class RoomlistComponent implements OnInit {
         return room.users[i];
       }
     }
-    return null;
+    return new User[0];
+  }
+
+  public onClick() {
+    this.applicationService.getDataHolder.logout(this.applicationService.getRestTemplate.doPost(Constants.LOGOUT_URL, this.applicationService.getDataHolder.user));
+  }
+
+  public createRoom() {
+    let room:Room = new Room;
+    room.authorId = this.applicationService.getDataHolder.user.getId;
+    this.applicationService.getDataHolder.signUpToARoom(this.applicationService.getRestTemplate.doPost(Constants.ROOM_CREATE_URL, room));
   }
 
 }

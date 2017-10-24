@@ -27,6 +27,6 @@ public class UserService {
     }
 
     public User getUser(Long id) {
-        return this.user.get();
+        return users.get(id);
     }
 }

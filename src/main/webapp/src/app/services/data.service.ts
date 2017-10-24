@@ -19,6 +19,10 @@ export class DataHolder {
     return this._user;
   }
 
+  get room(): Room {
+    return this._room;
+  }
+
   public logout(fromServer: Observable<Response>) {
     let result: User;
     fromServer.subscribe(next=> {
@@ -53,7 +57,11 @@ export class DataHolder {
   public signUpToARoom(fromServer: Observable<Response>){
     fromServer.subscribe(next => {
       this._room = <Room>next.json();
-      //reroute to room
+      this.router.navigate(['/room/'+this._room.id]);
     });
+  }
+
+  public exitRoomAndDisbandIfAuthor(){
+    this.router.navigate(['/roomlist']);
   }
 }

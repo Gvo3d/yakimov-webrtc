@@ -28,6 +28,10 @@ export class RestTemplate implements OnInit {
     return this.http.post(this.getUrl(url), dataToSend, {headers: this.headers});
   }
 
+  public doDelete(url: string): Observable<Response> {
+    return this.http.delete(this.getUrl(url), {headers: this.headers});
+  }
+
   private getUrl(url: string): string {
     return this.baseUrl + url;
   }

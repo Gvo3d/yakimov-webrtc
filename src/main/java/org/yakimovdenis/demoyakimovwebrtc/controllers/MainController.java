@@ -40,9 +40,24 @@ public class MainController {
         return roomService.getRooms();
     }
 
-    @RequestMapping(value="/createRoom", method = RequestMethod.GET)
+    @RequestMapping(value="/createRoom", method = RequestMethod.POST)
     public Room createRoom(@RequestBody Room room){
         return roomService.addRoom(room);
     }
 
+    @RequestMapping(value="/disband/{id}", method = RequestMethod.DELETE)
+    public boolean disbandRoom(@PathVariable("id") Long id){
+        Room room = roomService.getRoom(id);
+        if (room.getAuthorId().equals(userService.getUser())){
+            roomService.disbandRoom(id);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @RequestMapping(value="/exit/{id}", method = RequestMethod.GET)
+    public boolean exitRoom(@PathVariable("id") Long id){
+        return roomService.retrieveUser(id, userService.getUser().getId());
+    }
 }
