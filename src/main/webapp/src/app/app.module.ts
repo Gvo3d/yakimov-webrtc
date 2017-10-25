@@ -13,11 +13,17 @@ import {RoutingModule} from "./routing.module";
 import {DataHolder} from "./services/data.service";
 import {WebsocketService} from "./services/websocket.service";
 import {RoomlistService} from "./services/roomlist.service";
+import {StompConfig, StompService} from '@stomp/ng2-stompjs';
+import {Constants} from "./constants";
 
 @NgModule({
   imports: [RoutingModule, BrowserModule, FormsModule, HttpModule],
   declarations: [MainComponent, LoginComponent, RoomComponent, RoomlistComponent, PageNotFoundComponent],
-  providers: [RestTemplate, DataHolder, WebsocketService, RoomlistService, ApplicationService],
+  providers: [RestTemplate, DataHolder, WebsocketService, RoomlistService, ApplicationService, StompService,
+    {
+      provide: StompConfig,
+      useValue: Constants.stompConfig
+    }],
   bootstrap: [MainComponent]
 })
 

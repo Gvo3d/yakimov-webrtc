@@ -8,9 +8,7 @@ import {StompService} from '@stomp/ng2-stompjs';
 import {Room} from "../models/room.model";
 import {ApplicationService} from "./application.service";
 
-@Injectable()
-export class RoomlistService implements OnInit, OnDestroy {
-  // Stream of messages
+export class AbstractStompService implements OnInit, OnDestroy {
   private subscription: Subscription;
   public messages: Observable<Message>;
 
@@ -26,7 +24,7 @@ export class RoomlistService implements OnInit, OnDestroy {
   private _counter = 1;
 
   /** Constructor */
-  constructor(private applicationService:ApplicationService) { }
+  constructor(private applicationService:ApplicationService, private topicUrl:string) { }
 
   ngOnInit() {
     this.subscribed = false;
@@ -42,7 +40,7 @@ export class RoomlistService implements OnInit, OnDestroy {
     }
 
     // Stream of messages
-    this.messages = this.applicationService.getStompService.subscribe('/topic/ng-demo-sub');
+    this.messages = this.applicationService.getStompService.subscribe(this.topicUrl);
 
     // Subscribe a function to be run on_next message
     this.subscription = this.messages.subscribe(this.on_next);
@@ -72,7 +70,7 @@ export class RoomlistService implements OnInit, OnDestroy {
     const _getRandomInt = (min, max) => {
       return Math.floor(Math.random() * (max - min + 1)) + min;
     };
-    this.applicationService.getStompService.publish('/topic/ng-demo-sub',
+    this.applicationService.getStompService.publish(this.topicUrl,
       `{ type: "Test Message", data: [ ${this._counter}, ${_getRandomInt(1, 100)}, ${_getRandomInt(1, 100)}] }`);
 
     this._counter++;
