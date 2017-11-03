@@ -6,3 +6,17 @@ dataSource:
   password: root
   dialect: org.hibernate.dialect.PostgreSQLDialect
   package: org.yakimovdenis.demoyakimovwebrtc.models
+
+spring:
+  mandatory-file-encoding: UTF-8
+  data:
+    mongodb:
+      database: web-chat
+
+telemetry:
+  log4j:
+    debug: true
+    info: true
+    warn: true
+    error: true
+    fatal: true
